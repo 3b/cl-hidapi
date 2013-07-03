@@ -117,8 +117,10 @@ of (unsigned-byte 8), formatted as required by DEVICE. First octet of
 BUFFER should contain report id if needed, or 0.
 Returns number of octets written?"
   (with-foreign-pointer (v (length buffer) size)
-    (loop for i below size
-          do (setf (mem-aref v :unsigned-char i) (aref buffer i)))
+    (let ((i 0))
+      (map nil (lambda (x)
+                 (setf (mem-aref v :unsigned-char (shiftf i (1+ i))) x))
+           buffer))
     (let ((l (%hidapi:send-feature-report device
                                           v
                                           size)))
