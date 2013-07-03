@@ -30,12 +30,11 @@
   (:export
    #:enumerate
    #:with-hid-device
+   #:get-feature-report
+   #:send-feature-report
+   #:read-timeout
    #:get-manufacturer-string
    #:get-product-string
    #:get-serial-number-string
    #:get-indexed-string
-   #:last-error
-   #:get-feature-report
-   #:read-timeout)
-  (:export
-   #:send-feature-report))
+   #:last-error))
